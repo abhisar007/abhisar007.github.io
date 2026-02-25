@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhisar Bharti — Data Engineer & Product Owner</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161d;
+    --border: #1e2330;
+    --accent: #4f8ef7;
+    --accent2: #c084fc;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --tag-bg: #1a1f2e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Animated gradient background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 10%, rgba(79,142,247,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(192,132,252,0.07) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 56px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .header-text h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #e8eaf0 30%, #4f8ef7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .header-text .tagline {
+    font-size: 0.95rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .contact-item:hover { color: var(--accent); }
+
+  .contact-item svg {
+    width: 13px; height: 13px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+  }
+
+  .avatar-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    z-index: 0;
+    animation: spin 8s linear infinite;
+  }
+
+  .avatar-wrap img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg);
+  }
+
+  .avatar-placeholder {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a2035, #1e2842);
+    border: 3px solid var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.15s; }
+  section:nth-child(4) { animation-delay: 0.2s; }
+  section:nth-child(5) { animation-delay: 0.25s; }
+  section:nth-child(6) { animation-delay: 0.3s; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-size: 1rem;
+    color: #a8b0c0;
+    line-height: 1.8;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .job {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 20px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .job::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    border-radius: 3px 0 0 3px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .job:hover { border-color: rgba(79,142,247,0.3); transform: translateX(2px); }
+  .job:hover::before { opacity: 1; }
+
+  .job-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .job-company {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 1px;
+  }
+
+  .job-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+
+  .job-location {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .job-bullets {
+    grid-column: 1 / -1;
+    margin-top: 12px;
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .job-bullets li {
+    font-size: 0.875rem;
+    color: #8a95a8;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .job-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .skill-group-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: #8a95a8;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 20px;
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-degree {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .edu-uni {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .edu-grade {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ── CERTS & MISC ── */
+  .cert-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .cert-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .cert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .info-card-title {
+    font-size: 0.68rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    padding: 3px 0;
+    color: #8a95a8;
+  }
+
+  .lang-level {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 40px 20px 60px; }
+    header { grid-template-columns: 1fr; }
+    .avatar-wrap { width: 70px; height: 70px; order: -1; }
+    .job { grid-template-columns: 1fr; }
+    .job-period, .job-location { text-align: left; }
+    .bottom-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-text">
+      <h1>Abhisar Bharti</h1>
+      <p class="tagline">Data Engineer &amp; SAFe 6 Product Owner</p>
+      <div class="contact-grid">
+        <a href="mailto:abhisar.bharti007@gmail.com" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+          abhisar.bharti007@gmail.com
+        </a>
+        <a href="tel:+4917636703262" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.49 2 2 0 0 1 3.59 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +49 176 36703262
+        </a>
+        <span class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Munich, Germany
+        </span>
+        <a href="https://linkedin.com" class="contact-item" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com" class="contact-item" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="avatar-wrap">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gANTFdGX0pQMl8yMTL/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6K+0XH/PxN/32f8aPtFx/z8Tf99n/ABqKigCX7Rcf8/E3/fw/40faLj/n4m/7+H/GoqKAJftFx/z8Tf8Afw/40fabj/n4m/77P+NRUUAS/abj/n4m/wC+zR9ouP8An4m/7+H/ABqIUGgCX7TP/wA/E3/fw0fabg/8vE3/AH8P+NQmlFAEv2i4/wCfib/v4aPtNx/z8Tf9/DUfNJQBL9ouP+fib/v4f8aPtNx/z8T/APfw1F2oHvQBL9ouP+fib/v4aPtNx/z8Tf8Afw1FRQBKbi4/5+Jv+/h/xo+0XH/PxN/38P8AjUVAoAl+0XH/AD8Tf9/DR9ouP+fib/v4aiooAl+0XH/PxN/38P8AjSfaLj/n4n/7+H/Go6KAJftFx/z8Tf8Afw/40faLj/n4m/77P+NRUUAS/aLj/n4m/wC+z/jRUVFABRRRQAUUUUAFFFHGKAENLSGlHNAB1pHZVBLEADqScYrD8d+JrHwj4budavvnWIYjiDYMrnoo/wA9K+U/ip8V/EHi9VsvtEVlZAkmK1kIVvTJPJP5fSpcrDsfUfifx74T8NxbtT1u1RjwEjcSPn6D+tcPdftB+BYt3kx6nPg4DCAAE/Unj618onfIrZlywPA3fMSfc0SRXBjDht6htpQHkEdiB/Op52x2XU+po/2ifB5LCfTtWiwcbgiuD+RrotC+M/w+1ZeNbWyb+7dIU/Wvi6RhxtVkQnuc803zA0gLggf7PFK8hXXQ/Q3TtQstSs47ywuobm3cZSSJwysPY1aBzzXwP4U8a+JfCtz5+javcRDOWh3ZRvqp4P4V9N/An4vR+OEl0zV44LTV4ACArYWdfVQe/qK0TEeumikzkZpaYBRRQaACiiigAooooAKKKKACiiigAooooAKKKKACkYgDJ4A5JPal7V5d+0l41HhTwNJaW0uzUtVzBCA2Cifxv+XH40m7AeH/ALQ3jNvFfjKWxs73zNLsHEUEQJ2O/R3+ueB7V5rG6orbd6Y+8VGPw6VXRt0gDEZ6kkkVbaGNYmMjSbT0MZ+X8u9Za9SyvM8BPyKrdDvQsPwwe9EkkKANGu5jypY5/P3FMMQYMFY/LyB600W88hyFY54zjr7UXSBKT2HF0dtqxrGp5455x70xkk27gvBOM5/StGLw9rE0YdLCZlPQ461JL4d1mO3EslpJsPYDlaXPHuP2U+xgzNIF2YIAOQB1zTtNv7mwvo9QtJmiuIXDqynBzn1FLIjByrkjHqORVZkIPFXdGVnc+2fgf8UNM8caQlpPPBb63CMS2xf5mA/iXPUV6YMGvzd0zUL7SNSg1DTrmW1u4H3xyxtgqRX2x8AviPH4+8JqbuRBrVkAl5GBjd6SAeh7+9UmM9KNFHfmiqAKKKKACiiigAooooAKKKKACiig0AFFFHSgAPFfGH7THiBde+J13HDOZrbT0W1iA+7uH3yPxzX1/wCIrxrHQdQvVxut7aSQZ9QpNfBF5m6H2uRsyzyvK7HqxzWc3rYpK5QiHzDPNdp4Q8LtrkhIkfyFHzE9z6D/ABrA0LSJdS1GG0UFfMbBbHTqf6V9F+BPDTW1pDDFb/u0UYJFefi8V7NWW56WCwntHzS2Oc0zwDY26pGkCYAyS3JNdBp3hPT4BuSygDj+LZyPpXdPprwITIikkelMjUZCMoGPSvK9tOW7PbjSgtkcvHpcUYK+Wox7VBPpkPlkNGGH0rq763UL+7HPc1T+ynySx5PpS55Jl8kbHkPizwdpt1O+238qZzncuPzrgfEnhI6VZvLlpTjqe1e8a/ZPgybenvXD+KIo57IxFOen1zXZQryTWpw4nDQavY8InjOT+tdv+z54hm8O/FHSZ1crBcyi1nUHhkfj+eDXL6tB9nu5of7rYzWj8K7b7T8TfDlt0338Qz6fN/8AWr2ou6ufNtWdj9BCO3pxS0HqcetFaAFFFFABRRRQAUUUUAFFFFABSHpS0UAFB5oooAz/ABJbi88P6haEZE1rKhH1UivhTT9KvL68t9OtIDJdSSlFUDhRnkmvvogEbWGRXzv8M9At7bxX4nu2jAa11BraLPVVHJ/nXJi6ns4cx1YSCqT5WbHhbwLpWl2NvLchTPCNzyngZxg/hXQSeLtA0dAn2yB2A7OOK474iNf6w4s7aZ7exT7xU4DH3P8ASvPm8Jac+Tca4Iy+Qvzhufx4ryKNFVHzTZ7VWrKCtBaHtw8f6RcEp9pifAyArgk/StWzuLW6gWdZQu8/dPUfWvmu68IC3ZZLfWsru6vFgfgRXo3geG9a0S3N0JWBwCGODW1SlSgZ0Z1pPU9VniC5USLke9cxrHijTdMdo5541KnlSwFLrEGo21uGeYxuEORnrXh/jazl1PVnMl4YyOCpyx/KinCk3qVWnVUdD0HUPHuh3Dusd1C/sGBIrAm1TS9RuPKtp0MjDIAPWuVt/AkLQmWfULlAOTutwAPxzxWcPDscdwy2OpbZVztx1/xrp9jTS9041XxG0kHjbwxefaJNQt4mZG5dAOR7is74SQBvij4eDJI229Q4Uc5Br07wk17JbGy1V98uPlLDGRXJeG9NGmfHrRrdXEcbahG6H2bn/EVtQm/hZzYmkvjR9sA84OKQUd8c0vQV2LY4gzRRRTEFFFFAwooooAKKKKACiiigAo60UhFAFDXtTi0jTWvJl3AMFAzjJPSvKPCAa5uPE1zsETXWrPJhegBRa9Q8ZQpN4fmVuisrD8DXHaQlusuoC1QLH5y4AHfy1ryMxqST5eh7GXU4uPP1uch4k8O6tqkf2W2mt7eLOW3gnP1Hf6VQ8QeB7WXwJa6bbQ2sGpwXizy3UzCT7UOQVbjKqOu0cV6i1rHdx4ZST6CoJ9Ms4/kW1cSH++c151LESpvQ9SpRjVjZnmGieH49L8MS6NNp1vc6jJdvcC7tn8qOIEcKF2nK8ZwfwroPAmgXFrqi3EyJGSBuWP7gI7iutttPjEoE44XkKBxU9pG0k7iBfmJxx+lXiMS6i0DDYeNIxPiN5jQs0b7WA4ryfSLWSZpN0AeTzSZ3DgSBfRcg/nXrni2GW4gYNwy8EGvOrCPZrLw7P3mc5HUH1qsPJxWpVaCexjfETw0+uXMl5o2l2NpAbOKERyymR1Zc5YHA+Y55JrP8VaELi5sZ9D02PSDBCkcxMmftDqoBcqOFJI6j8a9RFvM8W2W2jZiMeYOM/hWbcaIXk3yKB7A11yxjeiOOOBinzHMaEt2qobhVMicZHeuZ8SaJc6h8T9OEKyZjtkkYpwcqTjBr0pbRYX4HSssyNbfESCYRkh7IKWHY7jj+dTSqPVomrSTaTPUPgzcavLDfx6hdvPEpUx+YxLIecjmvRK8/+FeRcagnPUN+degE55r08M26SueTjElWaQUUUnetzlFooooAKKKKACiiigApDS0UAIKXtSdKWgDN8TxtJoN2q8nZn8ua888KT5t7nd94TfMPwr1OZBJG0bchgQfevOhbfYb65t2UAq3zEDBb0rysyg7KR6+WVUoygbNnhGDk1dmniIGRkkdTWC10UQdfeopL/au4kADrmvHi1c9qztoXNXkmwIbcFmIyxx0rAuvFUOmOiC3ujsI8wxQlivufatC28Q2XmYmkC7gcNmsDxLeR3c7JD5KK6gLMq/MPxrp5YyaRmqnLF3NLxH4o01tKkkbyRhc7kyXc+gHc1wJ1GGW9tJIoporrzA211wwXPOfbFVrjU1vZZdNhhxKshiEhTnIAOQfzrBgv5dG1ERTgsu7lz1Yen1rr9jZXOWGIjezPeLJLe7tBIFCNjpWZqkCMMcAqePeub8M+Lbe5Y28TjcBzzwK2L2+BAfaZGJxgdRXPUSXQ6KcubZmZcja5b17VmXN3FZ647yBCXtkATqxO5jx+dW7+RixOSKxb9Xk8RxtBEXka1EakDuWNVS1i0jOo0po9g+FkTvplzdv1kkC/kP8A69dp2rJ8I6Z/ZGg2tiTmQJukPqx5Na+K9ulHlgkfO15+0qOQgpaKK0MgooooAKKKKACiiigAooooAKKKKAE7+1c94rsY1Zb9D85wjjHB9DXQ9qo69CbjSbhVGXC7l+o5rHEU1Om0zahU5KiZw/8AB7A1n6jtWzlZ1+QA5GetTm5G3JH4dqZKyTWzR7hgg5r5dK0j6pSvE8a1LxkltqO6aGXykOwMqZHXpntXTeH/ABFfawypp66faRt8gmvJFGCe4B5/Suug8J6MtmZ/Jhm3DO1hkH3rCudX0jSWaC5ht1i7HYAVHtXowlBuyWpyqnLW8rF+48PX6Q3MqeLtBhlhx5rQwg9R3OR/KvOfGP2jTLhku7zTNQQNkTQyDcecZro9Q8UeE3hZUKB24AAArjLi1t9TvwbWIYPIVecj611e7a7RlUptL3Z3+RY8GxveapBcLbPbxk5Ct1z+HavTmhaMiSQnJHIHSqmh29lYWMaoVMoGSfUelWNRv0dgwYYJzXHXlzPQ1w8eTQivMMyjOK9V8LeGtKtrS2vfsqPcmMZdjk+vSvJrOQX2pwWsI3PLIEUfU17zaxCC1jh7IoX8q7cBTVm2ebmNV8ySZIB+FKKQUtekeWBNFFFABRRRQAUUUUAFFFFABRRRQAUUUuaAEoPIIPSiikB5N46srrRNTMgQmymJaOQdF9VPvWRa6nARgPtPQ57ivVPHNol54WvoZEDjZuHsQRyK+ftctbmzISPc0THlieleFjMPGNTTqe/gcQ50teh6NbSeaqxRyF0PGAen1rI13QLG/RjdxAEHDcZJ9686j8V6jpEruQ0kJ4DDkr9a17fx9avD80qPjIwXGTzWdOjNO6NqleDVmM1Dwhp1oPNVVlVeqsg6dqs6b/ZsMbRxFUaPtiqR8UQgMxUMpBC9CPr6muP1jxHbpKzo+Mn5gp5Y9q7HCUlY5I1IQ1R2+paiLNVLPvKkgrntWXc63EIfMwAOignnJrhJ9Ru9QAkfdHGnBPf8av6bDPf3EfmqRbI3J/vVPsUtyvrLeyPffgToElxGfE19EwVuLXd3HdhXrvDdKzvC0EVv4b02CBFSFLZAijoBtFaVepTgoRSR49WbnJtgBiloorQzCiiigAooooAKKKKACiiigAopSKbQAtFAINBwKACk+tR3EsVvGZZ5UiRerMcAVx2v+N40Z4NKTzGA/wBc44/Ad6xrV6dJXmzWlRnUfuo2/F1/Bb6LfxFwXWAMwH8ILBQT+JrzW605L23ZSAc9q6HwPZyeJbDxVDeTSM9zbpD5jHkMdzDH0IFcr4Wv5WRrS6+W8tZDBcL6OvB/A8H8a8DGV5Vmqi2PewNJUk4dTjPEXh2SAP5SDac8YrlJNL09Jh9ssI2IGPu4wfWvfLi2iukO5F5FcvqegwiUtIijnqRmpo4h9Tarh1LVHk9xpumCIrCskabeUWVgPrgGsU6VaMcW1sDIW5bGSPzr1670W2UFo1jPHXFZMmlKrhwinHoK644ho55YRSOS0rw60xDXRwM52j1reNqLdRFHGMAYrYSNETAUE4/KrXhWwOseLtP01F3IZPNnPoicn8+B+NL2jkxypxpQbO/8C+MRpGpSeE9fn2tAF+zTucDayhtjfTOAa9OSRZEDoQyHoynINfOXxiXy/G09wq4EsaH9Mf0qp4V8ea/4fZEtrnzLZTzBIMqfp6fhXoU6/LpI8mdDnXNE+mv1orzHSPjFo1wEW9sLm3Yj5imGAP06122h+I9F1lQ2n6hDKT1Tdhx+BrpjUjLZnNKnKO6NiikJwaUntWhAUUmaDQAtFFFABR1qC5u7a0j33M0US+rsBXM6t470izylqr3cnqowo/E1lOtTp/E7GkKU6nwo60VHLLHEpaWRY1HUuQBXlWqePNZudy2zR2iHpsGW/M1zV3f3t25a5uZZmPJLMTXDUzOmvhVztp5bN/E7HruqeMNEsQQLj7TIP4Yef16Vyeq/EK+mymm2qQA9Gb5m/wAK4lAx68VYgTbl8dTgf1rhqZhWls7HbTwFKGrVzQvNQ1DUOb26kmPox4H4VXYEJ16U9VNJMpEbZrhbcnqzrSUVZHo/wZhVfC9/c4+d7xlY/wC6i4/ma8q8Zs2i/FR51+W31W2WQ46GaMlW/Ndtex/B63cfD9JSpzPczydOo3YH6AV5l8cNMlOmjUokIudMuDOOOSgPzj/vkn8q7Ix9yzOSM7Vro1rS4Dxq3UEVYHlyoQQCPTrXMeE9RjuYUG4FCoINdLtwMqeK41Fp2PScrop6jbwBMrCmfZRXP6jH+7OFUn1rppgzAg1jajCQhwMVq20TCxyd5IEUg8Gu0+BensG1XXJlyT/o8JPZRy36kD8K4zUUGWJycCva/C+krovgC0iC7ZHh8yT/AHmG4/zrqw7Tdzkx7tC3c8f+LuJdcWT+7Eoz+JrhWBbjv2rsPiNNnXijgESW6HP4muTcbW68Hpiut6nBTfuiBW69DU1tdzwt5sUrRsOQVOCKYpGOBkVBOwSORencc1NmabnZaB8UvE+lgIbwXcQ/guPm/XrXa6P8aoWwNT0hlGeXhfP6GvDIyMZqWJwp9PpVxrTj1M5UYS3R9SaL8QPCuq4EepJBIf4JxtP+FdJbXNvcpvt54pl9Y3BH6V8fLIR/Eau2Wp31m+61u54D6xyEVvHFvqjCWEXRn119DRXzlo3xR8UaftR71LyMfwzrk4+vWir+sxI+qTNO5ubq5bfPLJKx6lzmoXBXtVuNOwGcUSxfLk180227tn0SSSskZ7EA80q89sj60lxlD0NRwSgvkDpxTQMsj1/DFT208EjeUrjzE+8h4I9/pTQqEZxweRVea0t3cSgusiHIZWxj6UWJuaoYYwDyBwO9QXhLQMz8hRnB70sAwc8k9ye9NvmCW0zN02mkM6XxE1xHa+H9AtLq4hjbysLDIUCoF3u3HqTXSavpX9s6HNZFt90VO3ef9YpGCpPrjpWdb2gu9eF6wBS1tooIyOQW2Ddj8a31O0hlOMV6lGneD8zxKlRqd0fOfhO+fSNQk0S73Ry2sphYMMHg8V6dBegQjJ7VF8XPA/8Abc0PiLSTHDqSMFlJ+7J7N/Q1naaZbaJbHV4mtLxBgJJ92T3Vuh/CuSpT5WetQrKpC5tNeKQAx+lVdRYGEkCrFpbRvjcQR7Go9ZjURLFEMknnHYVlLY6INXOZFmbvUba2VT+/mRBj3YCvZtW16K41CTw7bWbeTH+6+17+N4HQD0rjNG0C706SLW9QhMUKA/ZUdcNJIeAcdcDOc+uK6TTbQhlYjawBYfU966sNE87H1VJq3Q8P+JYdPEyxNlWSEKR9GaubYjK4613HxutDD4wjvAP3V1bb19m3EMPzrgnfYpY8+mK7YnJHVEWp3UsCKsEamR+CT0UetUYVbBaV2eQ8nPb6VYOZWLtzng0skAGCoobRaixidMVIAKbFiRCVbODgj0qTYw7ZqXYsXJ2+9PySuelNCHrnFSxrkYNSUMAoq1HDwM/jRSCx6cuN2VBA70iyBjggj60UV5Fz0ijq67QJF59qzbOZc7cY5/OiirjsJmqcGKPB56EilDYGMcds0UUmyUWYvu+o+tUfEDAWEignBHaiiknqD2PTPC6u2kWyhfmZa6CLT7krllAFFFevzuMVY8LlTkyGe1lTchTch+8vqKkv9A0/VdFkimxNbSAkpIuWjb1B6g+9FFRUd1qaQ9x3R5TLFe6Dqz6TcO04xugkPJkXOMfWvT/CfhlNOhTU9VVZL1seXERkQ5/m38qKK8+CXMz1K1WXsovuJ43ka68U2enkEx2sAlfj+Jjx/KktDkSE+veiivUoJWueNVeyPIPjSEl16FSfuWo6epY/4V5jqNrI0Xlxsw3dWHaiihuzOumvcRDatLEQtzGxXoJFHA+tbFxZ+VaSSS8ALmiiob1NUvdZm+HoHkXhc7uTWwdPZhkttooqJzcXoVSipK7A2KqOWpBaLkYzz0oooUmxyikTpYzdlNFFFO5Nj//Z" alt="Abhisar Bharti" style="position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg);">
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="section-label">Professional Summary</div>
+    <p class="summary">
+      Strategic Data Engineer &amp; SAFe 6 Product Owner with 5+ years of experience bridging complex data ecosystems and executive-level risk narratives. Currently at Allianz Commercial, architecting robust Palantir Foundry and Databricks pipelines that transform fragmented NatCat and portfolio data into high-fidelity insights. Integrating product ownership with mastery of the end-to-end data lifecycle to ensure data integrity and informed decision-making across Risk Selection, AI Ethics, and Regulatory Compliance.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-label">Experience</div>
+
+    <div class="job">
+      <div>
+        <div class="job-title">Data Engineer &amp; Dept. Product Owner</div>
+        <div class="job-company">Allianz Commercial</div>
+      </div>
+      <div>
+        <div class="job-period">Sept 2023 – Present</div>
+        <div class="job-location">Munich, Germany</div>
+      </div>
+      <ul class="job-bullets">
+        <li>Directed the SAFe 6 product roadmap for a next-generation risk platform, translating Accumulation Management needs into scalable technical requirements.</li>
+        <li>Architected automated end-to-end data lifecycles in Palantir Foundry, unifying fragmented global policy data into audit-ready datasets for Portfolio Steering.</li>
+        <li>Pioneered live risk narratives by connecting backend pipelines to reactive visualization layers, enabling real-time executive monitoring of NatCat exposure.</li>
+        <li>Automated high-volume governance workflows to ensure algorithmic fairness, regulatory compliance, and elimination of manual reporting overhead.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div>
+        <div class="job-title">Data Science Consultant</div>
+        <div class="job-company">ML Reply</div>
+      </div>
+      <div>
+        <div class="job-period">Feb 2022 – June 2023</div>
+        <div class="job-location">Munich, Germany</div>
+      </div>
+      <ul class="job-bullets">
+        <li>Optimized large-scale data platforms to reduce query latency and improve speed-to-insight for mission-critical analytics units.</li>
+        <li>Led end-to-end migration of Prometheus &amp; Grafana monitoring ecosystems to new cloud environments with zero downtime.</li>
+        <li>Integrated Kubernetes-based monitoring solutions to proactively track pipeline health and ensure high availability.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div>
+        <div class="job-title">Machine Learning Intern</div>
+        <div class="job-company">Phoenix Contact GmbH</div>
+      </div>
+      <div>
+        <div class="job-period">April 2019 – Sept 2020</div>
+        <div class="job-location">Bad Pyrmont, Germany</div>
+      </div>
+      <ul class="job-bullets">
+        <li>Developed LSTM-based anomaly detection models for PCB production lines to improve manufacturing quality control.</li>
+        <li>Engineered large-scale training datasets to ensure high-fidelity inputs and model performance accuracy.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div>
+        <div class="job-title">Data Engineer &amp; Project Manager</div>
+        <div class="job-company">Reliance Jio Infocomm</div>
+      </div>
+      <div>
+        <div class="job-period">March 2016 – Sept 2017</div>
+        <div class="job-location">Navi Mumbai, India</div>
+      </div>
+      <ul class="job-bullets">
+        <li>Designed and deployed enterprise Tableau dashboards to centralize BI reporting and executive visibility.</li>
+        <li>Built disaster recovery solutions for reporting environments, ensuring 24/7 operational availability.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-name">Data Engineering</div>
+        <div class="tags">
+          <span class="tag">Palantir Foundry</span>
+          <span class="tag">Databricks</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Visualization</div>
+        <div class="tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Live Storytelling</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Cloud &amp; Ops</div>
+        <div class="tags">
+          <span class="tag">Azure</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Jira</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Insurance Domain</div>
+        <div class="tags">
+          <span class="tag">Accumulation Risk</span>
+          <span class="tag">NatCat Analytics</span>
+          <span class="tag">Moody's RMS</span>
+          <span class="tag">Verisk</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">M.Sc. Data and Knowledge Engineering</div>
+        <div class="edu-uni">Otto von Guericke University</div>
+      </div>
+      <div class="edu-grade">Grade 2.2</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">B.E. Computer Engineering</div>
+        <div class="edu-uni">Mumbai University</div>
+      </div>
+      <div class="edu-grade">Grade 2.1</div>
+    </div>
+  </section>
+
+  <!-- CERTS + LANGUAGES + PUBLICATION -->
+  <section>
+    <div class="section-label">Certifications</div>
+    <div class="cert-row">
+      <div class="cert-badge">
+        <div class="cert-dot"></div>
+        SAFe 6 Product Owner / Product Manager (POPM)
+      </div>
+      <div class="cert-badge">
+        <div class="cert-dot" style="background:var(--accent2)"></div>
+        Microsoft Azure Fundamentals
+      </div>
+      <div class="cert-badge">
+        <div class="cert-dot" style="background:#f97316"></div>
+        AWS Cloud Practitioner
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+    <div class="info-card">
+      <div class="info-card-title">Languages</div>
+      <div class="lang-item"><span>English</span><span class="lang-level">C1</span></div>
+      <div class="lang-item"><span>German</span><span class="lang-level">B1</span></div>
+      <div class="lang-item"><span>Hindi</span><span class="lang-level">C2 · Native</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Publication</div>
+      <p style="font-size:0.82rem; color:#8a95a8; line-height:1.6;">
+        <em>Weighted Altmetrics Score to Facilitate Literature Analyses</em>
+        <br>
+        <span style="color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:0.72rem;">SpringerLink · International</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
